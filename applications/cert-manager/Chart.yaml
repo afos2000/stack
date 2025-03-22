@@ -1,11 +1,11 @@
 apiVersion: v2
-name: postgresql
+name: cert-manager
 version: v1
-description: Helm chart to deploy postgresql
+description: Helm chart to deploy cert-manager
 dependencies:
-  - name: postgresql-ha
-    version: 9.4.11
-    repository: https://mlops-for-all.github.io/helm-charts/
+  - name: cert-manager
+    version: 1.17.1
+    repository: https://charts.jetstack.io --force-update
 maintainers: 
   - name: Andres Ortega
     email: afortegast@gmail.com
