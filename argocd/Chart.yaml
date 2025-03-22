@@ -1,11 +1,11 @@
 apiVersion: v2
-name: cert-manager
+name: argocd
 version: v1
-description: Helm chart to deploy cert-manager
+description: Helm chart to deploy argocd
 dependencies:
-  - name: cert-manager
-    version: 1.17.1
-    repository: https://charts.jetstack.io
+  - name: argocd
+    version: 7.8.13
+    repository: https://argoproj.github.io/argo-helm
 maintainers: 
   - name: Andres Ortega
     email: afortegast@gmail.com
