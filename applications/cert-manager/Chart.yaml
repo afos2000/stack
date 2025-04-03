@@ -4,7 +4,7 @@ version: v1
 description: Helm chart to deploy cert-manager
 dependencies:
   - name: cert-manager
-    version: 1.17.1
+    version: 1.17.0
     repository: https://charts.jetstack.io
 maintainers: 
   - name: Andres Ortega
