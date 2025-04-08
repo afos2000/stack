@@ -1,0 +1,12 @@
+apiVersion: v2
+name: nginx
+version: v1
+description: Helm chart to deploy nginx
+dependencies:
+  - name: nginx-ingress
+    version: 2.0.1
+    repository: https://helm.nginx.com/stable
+maintainers: 
+  - name: Andres Ortega
+    email: afortegast@gmail.com
+    url: https://www.linkedin.com/in/andres-ortega-97435535/
