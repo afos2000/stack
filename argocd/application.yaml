@@ -2,17 +2,13 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: argocd
-  namespace: argocd
+  namespace: argocd  # Make sure Argo CD is watching this namespace
 spec:
   project: default
   source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-cd
-    targetRevision: 8.0.4
-    helm:
-      releaseName: argocd
-      # valueFiles:
-      #   - values.yaml
+    repoURL: https://github.com/afos2000/stack.git
+    targetRevision: main
+    path: argocd
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
