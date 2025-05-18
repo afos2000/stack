@@ -8,7 +8,7 @@ dependencies:
     repository: https://mlops-for-all.github.io/helm-charts/
   - name: minio
     version: 12.8.0
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: "registry-1.docker.io/bitnamicharts"
 maintainers: 
   - name: Andres Ortega
     email: afortegast@gmail.com
