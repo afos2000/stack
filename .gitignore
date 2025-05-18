@@ -1,1 +1,3 @@
 secret.yaml
+*.pem
+sealing.sh
