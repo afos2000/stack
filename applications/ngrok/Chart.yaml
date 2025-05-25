@@ -4,7 +4,7 @@ version: v1
 description: Helm chart to deploy ngrok-operator
 dependencies:
   - name: ngrok-operator
-    version: 0.18.1.
+    version: 0.18.1
     repository: https://charts.ngrok.com
 maintainers: 
   - name: Andres Ortega
