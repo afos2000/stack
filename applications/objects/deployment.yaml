@@ -69,21 +69,3 @@ metadata:
   annotations:
    reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
    reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "mlflow, argo, argocd"
----
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  annotations:
-    sealedsecrets.bitnami.com/cluster-wide: "true"
-  creationTimestamp: null
-  name: test
-spec:
-  encryptedData:
-    app: AgBMe6hN8jAduSmDPYo3QKbp3pod6NgxwzsLKB/XGk7ua+vBohmwIyihQ2dzKxVD+8hpIRpsEl+Vs+KJ6DRdNpytU715TMo5C8VZmVsgzDxcKkdsVOkmCb64rZ4uHfmUjDJuToak8ldchMAO4rGddsygNx4KfpdnItZuEeneE3KOvXpmumR7gBjH4MvlIBsbeVDFLXXwWPuFFBWw6ZZqqoc9YC2jUlrPL/xFgPH8AzRuK9qj7auFmiEmqYE/nmA0r2uMGZl4GO5THR7RJxSQs/Bn9h1BRC+KJxVj1NUTg/ELVTEnYS4967ZbyhDhDMbD/33gbhDyWkzI63+EFnrKq3sPx1PeFCbszCvV4rBPaCotUlwBt6+7I3h9WhU70I1Blyn2haCuqHvzfTaqOhC1mBAvvKboK/7b0VCq0rz1hr+bHQ1+K+KIXngdVp5gDosVS8NFQKgESBolmrlTT9hRKmXQc9RJK1fU/uAm3e/rxE/fj5ilkx5eJVMTmmqmSNz15qlYnURneG4+LBYoGKcBcuDPSTbjFqXQ4g2yXdv3vfMUf1PALXnVe4qFUMphvv/YdnP+ephTEpVb3SK918x10dnsSQG4txFN76+ffQN5HdDSg8WIIyQQpKohWXAex9chbr2uxzixxGe44p41kyR7IHoVz9zlpAv5rfb92TDy6l+VHf2N12L4LdLHtPeYTGfZ6LSv/i0EbVk=
-    test: AgBR7H5He1hisYD3N3+L4PPwwxMFQaAgm95s+4l/POVaiV1k6+sSShU+LSYvcL2+AmfAqVtZyHIjWAynWU+RqreAh3Q60IHPGqN7DKIXGzWXeFLSVdFNKzwmx2+1W6r/GV5H+tJP3Kwur4UtxwIz/EH4CnZpWIW3McBgqjNcr3k7pY83UWAdykXf0sjlvtAO5FjsooGNJ6qtJ5Kt/PV6I/YNtbDYCVEJNHa/x2xnbVkqiq8o7/teHuMa1NdaO83FeyAEd8fXF9kX9R7ObmK539AlHU44TPsnccJu9RI2fLS5cK5ZF9S61s3fooU4jRPaeJjkOFffSQs+SmAevufc2CrFZ1s/11r3oLjY0tyfCu8pP0wKDQ4XTL1BcQeIb2sBIUZ77AX/yZkooMy9m+GvNY80ghT8ND5PuxoMs/Met8gGp0FmZjEuIwpKu9e98ghWD5EAg9lKNHZEcTY7Udi7EUhQsNoONj4Rve+KTF8UWhDN93shfU8Nd6h5WmKTTEmnVjkZvkwNXmQ6Hgo6zecNA88As4kS565iTZXWUAnr0O5nsWkH1tfIuR3YJvKhuhG6YGhLrYVK1Px3wW7Mq+wsyU1wSGJN3NOyB1nns5dsWiPX2GOb4wk5+9dvQ2FBlVK6uUR4MAuexzPRymlzGGJJQtkQqpBLpdvjmKbQa/Mat9sA+0LQDSGBhfgO00Aul61sQtRkjl0=
-  template:
-    metadata:
-      annotations:
-        sealedsecrets.bitnami.com/cluster-wide: "true"
-      creationTimestamp: null
-      name: test
