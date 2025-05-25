@@ -1,0 +1,3 @@
+gatekeeper:
+  customResourceDefinitions:
+    create: false

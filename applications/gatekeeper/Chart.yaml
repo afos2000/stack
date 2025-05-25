@@ -4,7 +4,7 @@ version: v1
 description: Helm chart to deploy gatekeeper
 dependencies:
   - name: gatekeeper
-    version: 3.18.2
+    version: 3.19.1
     repository: https://open-policy-agent.github.io/gatekeeper/charts
 maintainers: 
   - name: Andres Ortega
