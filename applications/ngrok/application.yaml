@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ngrok
+  namespace: ngrok
+spec:
+  project: default
+  source:
+    repoURL: https://charts.ngrok.com
+    chart: argo-cd
+    targetRevision: 0.18.1
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ngrok
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
