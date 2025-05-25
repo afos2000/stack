@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://charts.ngrok.com
-    chart: argo-cd
+    chart: ngrok-operator
     targetRevision: 0.18.1
   destination:
     server: https://kubernetes.default.svc
