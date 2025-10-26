@@ -1,4 +1,4 @@
-postgresql:
+postgresql-ha:
   postgresql:
     image:
       registry: docker.io
