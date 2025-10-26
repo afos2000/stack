@@ -1,5 +1,11 @@
-postgresql-ha:
+postgresql:
   image:
-    registry: registry-1.docker.io
-    repository: bitnamilegacy/postgresql
-    tag: latest
+    registry: docker.io
+    repository: bitnamilegacy/postgresql-repmgr
+    tag: 14.7.0-debian-11-r17
+
+pgpool:
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/pgpool
+    tag: 4.4.2-debian-11-r20
