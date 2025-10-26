@@ -1,11 +1,12 @@
 postgresql:
-  image:
-    registry: docker.io
-    repository: bitnamilegacy/postgresql-repmgr
-    tag: 14.7.0-debian-11-r17
+  postgresql:
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/postgresql-repmgr
+      tag: 14.7.0-debian-11-r17
 
-pgpool:
-  image:
-    registry: docker.io
-    repository: bitnamilegacy/pgpool
-    tag: 4.4.2-debian-11-r20
+  pgpool:
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/pgpool
+      tag: 4.4.2-debian-11-r20
