@@ -5,7 +5,7 @@ mlflow-server:
     secretAccessKey: andresRules
     bucket: mlflow
 minio:
-  onsole:
+  console:
     image:
       registry: docker.io
       repository: bitnamilegacy/minio-object-browser
