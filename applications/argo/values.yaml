@@ -64,6 +64,12 @@ argo-workflows:
   #     endpoint: argo-minio:9000
 
 minio:
+  console:
+    image:
+    registry: docker.io
+    repository: bitnamilegacy/minio-object-browser
+    tag: 2.0.2-debian-12-r3
+    digest: ""
   image:
     registry: docker.io
     repository: bitnamilegacy/minio
