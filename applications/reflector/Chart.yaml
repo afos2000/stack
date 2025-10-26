@@ -4,7 +4,7 @@ version: v1
 description: Helm chart to deploy reflector
 dependencies:
   - name: reflector
-    version: 6.1.47
+    version: 9.1.37
     repository: https://emberstack.github.io/helm-charts
 maintainers: 
   - name: Andres Ortega

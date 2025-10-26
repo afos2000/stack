@@ -4,7 +4,7 @@ namespace: ngrok
 helmCharts:
   - name: ngrok-operator
     repo: https://charts.ngrok.com
-    version: 0.18.1
+    version: 0.20.0
     releaseName: ngrok-operator
     valuesFile: values.yaml
 

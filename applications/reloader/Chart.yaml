@@ -4,7 +4,7 @@ version: v1
 description: Helm chart to deploy reloader
 dependencies:
   - name: reloader
-    version: 1.0.80
+    version: 2.2.3
     repository: https://stakater.github.io/stakater-charts
 maintainers: 
   - name: Andres Ortega
