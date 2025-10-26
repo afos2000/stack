@@ -5,6 +5,7 @@ mlflow-server:
     secretAccessKey: andresRules
     bucket: mlflow
 minio:
+  image: 
   tls:
     enabled: false
   auth:

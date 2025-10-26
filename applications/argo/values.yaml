@@ -64,6 +64,10 @@ argo-workflows:
   #     endpoint: argo-minio:9000
 
 minio:
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/minio
+    tag: 2025.7.23-debian-12-r3
   tls:
     enabled: false
   auth:
