@@ -1,4 +1,4 @@
-postgresql:
+postgresql-ha:
   image:
     registry: registry-1.docker.io
     repository: bitnamilegacy/postgresql
