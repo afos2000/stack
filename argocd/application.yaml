@@ -11,8 +11,13 @@ spec:
     chart: argo-cd
     targetRevision: 9.0.5
     helm:
-      valueFiles:
-      - values.yaml
+      values: |
+        server:
+          ingress:
+            enabled: true
+            ingressClassName: "nginx"
+            hostname: "refined-antelope-typically.ngrok-free.app"
+            tls: false
 
   destination:
     server: https://kubernetes.default.svc
