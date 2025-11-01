@@ -15,7 +15,7 @@ spec:
         server:
           ingress:
             enabled: true
-            ingressClassName: "nginx"
+            ingressClassName: "ngrok"
             hostname: "refined-antelope-typically.ngrok-free.app"
             tls: false
 
