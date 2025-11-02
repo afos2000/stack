@@ -6,7 +6,8 @@ metadata:
   annotations:
     # keep app-protocols consistent with the chart-managed ingress
     k8s.ngrok.com/app-protocols: '{"https":"https","http":"http"}'
-    kubernetes.io/ingress.class: "ngrok"
+    k8s.ngrok.com/traffic-policy: "shared-traffic-policy"
+    k8s.ngrok.com/pooling-enabled: "true"
 spec:
   ingressClassName: ngrok
   rules:
