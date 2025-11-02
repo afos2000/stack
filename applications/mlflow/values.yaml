@@ -35,5 +35,5 @@ postgresql-ha:
     enabled: true
     image:
       registry: docker.io
-      repository: namerci/bitnami-shell:10
+      repository: namerci/bitnami-shell
       tag: 10
