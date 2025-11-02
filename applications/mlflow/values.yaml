@@ -31,3 +31,9 @@ postgresql-ha:
       registry: docker.io
       repository: bitnamilegacy/postgresql-repmgr
       tag: 14.7.0-debian-11-r17
+  volumePermissions:
+    enabled: true
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/minimal-permissions
+      tag: 11-debian-11-r90
