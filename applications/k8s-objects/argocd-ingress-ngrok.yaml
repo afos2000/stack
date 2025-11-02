@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: argocd-server-ingress-ngrok
-  namespace: argocd
+  namespace: mlflow
   annotations:
     # keep app-protocols consistent with the chart-managed ingress
     k8s.ngrok.com/app-protocols: '{"https":"https","http":"http"}'
@@ -14,18 +14,18 @@ spec:
     - host: refined-antelope-typically.ngrok-free.app
       http:
         paths:
-          - path: /argo
-            pathType: Prefix
-            backend:
-              service:
-                name: argocd-server
-                # use the named https port so the operator can detect TLS upstream
-                port:
-                  name: https
+          # - path: /argo
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: argocd-server
+          #       # use the named https port so the operator can detect TLS upstream
+          #       port:
+          #         name: https
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: mlflow-remote
+                name: mlflow-server-service
                 port:
                   number: 5000
