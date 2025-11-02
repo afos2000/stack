@@ -22,7 +22,7 @@ spec:
                 # use the named https port so the operator can detect TLS upstream
                 port:
                   name: https
-          - path: /mlflow
+          - path: /
             pathType: Prefix
             backend:
               service:
