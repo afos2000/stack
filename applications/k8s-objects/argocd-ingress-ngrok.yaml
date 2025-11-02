@@ -14,7 +14,7 @@ spec:
     - host: refined-antelope-typically.ngrok-free.app
       http:
         paths:
-          - path: /
+          - path: /argo
             pathType: Prefix
             backend:
               service:
