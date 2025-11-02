@@ -4,6 +4,8 @@ mlflow-server:
     accessKeyId: admin 
     secretAccessKey: andresRules
     bucket: mlflow
+  db:
+    backendStoreUri: postgresql://mlops:mlops@postgresql-ha-pgpool.mlflow:5432/mlflow
 minio:
   console:
     image:
