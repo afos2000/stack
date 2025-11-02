@@ -35,5 +35,5 @@ postgresql-ha:
     enabled: true
     image:
       registry: docker.io
-      repository: bitnamilegacy/minimal-permissions
+      repository: bitnamilegacy/bitnami-shell
       tag: 11-debian-11-r90
