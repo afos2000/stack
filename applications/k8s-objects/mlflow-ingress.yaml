@@ -6,9 +6,10 @@ metadata:
   annotations:
     # indica al operador ngrok qué puerto del Service corresponde a HTTPS/HTTP
     k8s.ngrok.com/app-protocols: '{"https-port":"https","http-port":"http"}'
-    # opcionales para ngrok / nginx según tu caso
+    # Required to be identical for all Ingress resources that use the same hostname
+    k8s.ngrok.com/pooling-enabled: "true"
+    k8s.ngrok.com/traffic-policy: "shared-traffic-policy"
     kubernetes.io/ingress.class: "ngrok"
-    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: ngrok
   rules:
