@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow-remote
+  namespace: argocd
+spec:
+  type: ExternalName
+  externalName: mlflow-server.mlflow.svc.cluster.local
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000

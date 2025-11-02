@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server
+  namespace: argocd
+  annotations:
+    # Ensure this ingress uses the same ngrok traffic-policy and pooling as the other ingress
+    k8s.ngrok.com/app-protocols: '{"https-port":"https","http-port":"http"}'
+    k8s.ngrok.com/pooling-enabled: "true"
+    k8s.ngrok.com/traffic-policy: "shared-traffic-policy"
+    kubernetes.io/ingress.class: "ngrok"
+spec:
+  ingressClassName: ngrok
+  rules:
+    - host: refined-antelope-typically.ngrok-free.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443

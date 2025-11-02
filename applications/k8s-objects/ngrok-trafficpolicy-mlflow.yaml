@@ -2,11 +2,8 @@ apiVersion: ngrok.k8s.ngrok.com/v1alpha1
 kind: NgrokTrafficPolicy
 metadata:
   name: shared-traffic-policy
-  namespace: ngrok
+  namespace: mlflow
 spec:
-  # The operator's CRD expects a raw `policy` object matching the ngrok API
-  # keys (snake_case). Use the same structure the operator emits when it
-  # created the ArgoCD AgentEndpoint earlier.
   policy:
     on_http_request:
       - name: Initialize-Local-Service-Match
