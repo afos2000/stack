@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   type: ExternalName
-  externalName: mlflow-server.mlflow.svc.cluster.local
+  externalName: mlflow-server-service.mlflow.svc.cluster.local
   ports:
     - name: http
       port: 5000
