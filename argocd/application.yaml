@@ -18,6 +18,8 @@ spec:
             ingressClassName: "ngrok"
             hostname: "refined-antelope-typically.ngrok-free.app"
             tls: false
+            annotations:
+              k8s.ngrok.com/app-protocols: '{"https":"https","http":"http"}'
 
   destination:
     server: https://kubernetes.default.svc

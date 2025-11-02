@@ -9,6 +9,9 @@ dependencies:
   - name: minio
     version: 17.0.21
     repository: "oci://registry-1.docker.io/bitnamicharts"
+  - name: postgresql-ha
+    version: 9.4.11
+    repository: https://mlops-for-all.github.io/helm-charts/
 maintainers: 
   - name: Andres Ortega
     email: afortegast@gmail.com
