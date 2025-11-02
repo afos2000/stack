@@ -37,3 +37,8 @@ postgresql-ha:
       registry: docker.io
       repository: namerci/bitnami-shell
       tag: 10
+  pgpool:
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/pgpool
+      tag: 4.4.2-debian-11-r20
