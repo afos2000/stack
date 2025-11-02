@@ -1,3 +1,6 @@
+### Disabled: original mlflow Ingress moved here to avoid conflicting hostname ownership with argocd
+### If you want the mlflow route to be served under the same hostname, consolidate into the argocd ingress
+### or ensure both ingresses are in the same namespace and have identical ngrok traffic-policy + pooling annotations.
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -5,10 +8,7 @@ metadata:
   namespace: mlflow
   annotations:
     # indica al operador ngrok qué puerto del Service corresponde a HTTPS/HTTP
-    k8s.ngrok.com/app-protocols: '{"https-port":"https","http-port":"http"}'
-    # Required to be identical for all Ingress resources that use the same hostname
-    k8s.ngrok.com/pooling-enabled: "true"
-    k8s.ngrok.com/traffic-policy: "shared-traffic-policy"
+    k8s.ngrok.com/app-protocols: '{"https":"https","http":"http"}'
     kubernetes.io/ingress.class: "ngrok"
 spec:
   ingressClassName: ngrok
