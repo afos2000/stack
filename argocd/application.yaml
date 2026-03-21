@@ -9,17 +9,17 @@ spec:
   source:
     repoURL: https://argoproj.github.io/argo-helm
     chart: argo-cd
-    targetRevision: 9.0.5
-    helm:
-      values: |
-        server:
-          ingress:
-            enabled: true
-            ingressClassName: "ngrok"
-            hostname: "refined-antelope-typically.ngrok-free.app"
-            tls: false
-            annotations:
-              k8s.ngrok.com/app-protocols: '{"https":"https","http":"http"}'
+    targetRevision: 9.4.15
+    # helm:
+    #   values: |
+    #     server:
+    #       ingress:
+    #         enabled: true
+    #         ingressClassName: "ngrok"
+    #         hostname: "refined-antelope-typically.ngrok-free.app"
+    #         tls: false
+    #         annotations:
+    #           k8s.ngrok.com/app-protocols: '{"https":"https","http":"http"}'
 
   destination:
     server: https://kubernetes.default.svc

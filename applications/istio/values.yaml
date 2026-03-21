@@ -1,0 +1,153 @@
+# Istio Configuration
+# For learning and home lab use - optimized for 6CPU/12GB RAM
+
+istiod:
+  # Control plane configuration
+  revision: ""
+  
+  # Resource limits for home lab
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+  
+  # Enable auto-injection by default (learning friendly)
+  sidecarInjectorWebhook:
+    enableNamespacesByDefault: true
+    # Namespaces to inject sidecars (add your app namespaces here)
+    injectedAnnotations: {}
+  
+  # Security settings
+  global:
+    # Default mTLS mode: STRICT enforces mTLS
+    mtls:
+      enabled: true
+    
+    # Outbound traffic policy
+    outboundTrafficPolicy:
+      mode: ALLOW_ANY
+    
+    # Security context for sidecars
+    securityContext: {}
+    
+    # Image settings
+    hub: docker.io/istio
+    tag: 1.29.1
+    
+  # Pilot (control plane) settings
+  pilot:
+    # Resource limits
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    
+    # Certificate management - use built-in Istio CA
+    certProvider: istiod
+    
+    # Enable config source for ServiceEntries
+    configSource:
+      enabled: false
+    
+    # Autoscale settings
+    autoscaleEnabled: false
+    autoscaleMin: 1
+    autoscaleMax: 3
+    
+    # Tracing disabled by default for home lab (saves resources)
+    tracing:
+      enabled: false
+    
+    # Telemetry settings - lightweight for learning
+    telemetry:
+      enabled: true
+      v2:
+        enabled: true
+        # Disable expensive metadata exchange
+        metadataExchange:
+          wasmEnabled: false
+        # Disable stats (saves memory)
+        prometheus:
+          enabled: false
+
+gateway:
+  # Ingress gateway configuration
+  kind: Deployment
+  
+  # Resource limits
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 2000m
+      memory: 1Gi
+  
+  # Autoscale - disabled for home lab
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+  
+  # Service configuration
+  service:
+    type: ClusterIP
+    # Ports exposed
+    ports:
+      - name: http2
+        port: 80
+        targetPort: 80
+      - name: https
+        port: 443
+        targetPort: 443
+  
+  # Security context
+  securityContext:
+    fsGroup: 1337
+  
+  # Pod settings
+  podDisruptionBudget:
+    enabled: false
+  
+  # Service account
+  serviceAccount:
+    create: true
+    name: istio-ingressgateway
+
+base:
+  # CRD validation
+  validationURL: ""
+  
+  # Enable CRD templates (recommended)
+  enableCRDTemplates: true
+  
+  # Enable IstioConfig CRDs
+  enableIstioConfigCRDs: true
+
+# Global mesh configuration
+meshConfig:
+  # Enable access logging
+  accessLogFile: /dev/stdout
+  
+  # Default proxy configuration
+  defaultConfig:
+    proxyMetadata: {}
+    tracing:
+      sampling: 10.0
+  
+  # Enable mutual TLS
+  enableAutoMtls: true
+  
+  # Outbound traffic policy
+  outboundTrafficPolicy:
+    mode: ALLOW_ANY
+  
+  # Locality load balancer settings
+  localityLbSetting:
+    enabled: true
