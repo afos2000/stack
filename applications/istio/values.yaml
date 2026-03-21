@@ -16,12 +16,15 @@ istiod:
   
   # Enable auto-injection by default (learning friendly)
   sidecarInjectorWebhook:
-    enableNamespacesByDefault: true
+    enableNamespacesByDefault: false
     # Namespaces to inject sidecars (add your app namespaces here)
     injectedAnnotations: {}
   
   # Security settings
   global:
+    # CRITICAL: Match ArgoCD namespace (app name = namespace)
+    istioNamespace: istio
+    
     # Default mTLS mode: STRICT enforces mTLS
     mtls:
       enabled: true
