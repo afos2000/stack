@@ -4,3 +4,6 @@ longhorn:
   persistence:
     defaultClass: true
     defaultClassReplicaCount: 2
+
+preUpgradeHookJob:
+  enabled: false
