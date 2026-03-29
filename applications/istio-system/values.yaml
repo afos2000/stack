@@ -81,7 +81,6 @@ istiod:
 
 gateway:
   # Ingress gateway configuration
-  fullnameOverride: istio-ingressgateway
   name: istio-ingressgateway
   kind: Deployment
   
@@ -103,6 +102,10 @@ gateway:
   # Service configuration - LoadBalancer for MetalLB
   service:
     type: LoadBalancer
+    # Selector to match gateway pods
+    selector:
+      app: istio-ingressgateway
+      istio: ingressgateway
     # Ports exposed
     ports:
       - name: http2
