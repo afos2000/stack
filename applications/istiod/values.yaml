@@ -1,3 +1,5 @@
+namespaceOverride: istio-system
+
 # Istiod Control Plane Configuration
 istiod:
   revision: ""
