@@ -29,3 +29,12 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path[1]}}'
+      ignoreDifferences:
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          jsonPointers:
+            - /webhooks/clientConfig/caBundle
+        - group: admissionregistration.k8s.io
+          kind: MutatingWebhookConfiguration
+          jsonPointers:
+            - /webhooks/clientConfig/caBundle
