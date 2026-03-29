@@ -38,3 +38,15 @@ spec:
           kind: MutatingWebhookConfiguration
           jsonPointers:
             - /webhooks/clientConfig/caBundle
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: metallb-webhook-configuration
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: istio-validator-istio-system
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: istiod-default-validator
+        - group: admissionregistration.k8s.io
+          kind: MutatingWebhookConfiguration
+          name: istio-sidecar-injector

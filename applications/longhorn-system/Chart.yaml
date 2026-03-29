@@ -1,12 +1,12 @@
 apiVersion: v2
-name: metallb
-version: v1
-description: Helm chart to deploy metallb
+name: longhorn
+version: "1"
+description: Helm chart to deploy Longhorn
 dependencies:
-  - name: metallb
-    version: 0.15.3
-    repository: https://metallb.github.io/metallb
-maintainers: 
+  - name: longhorn
+    version: 1.7.2
+    repository: https://charts.longhorn.io
+maintainers:
   - name: Andres Ortega
     email: afortegast@gmail.com
     url: https://www.linkedin.com/in/andres-ortega-97435535/
