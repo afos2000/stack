@@ -81,6 +81,8 @@ istiod:
 
 gateway:
   # Ingress gateway configuration
+  fullnameOverride: istio-ingressgateway
+  name: istio-ingressgateway
   kind: Deployment
   
   # Resource limits
