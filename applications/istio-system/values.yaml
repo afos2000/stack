@@ -23,7 +23,7 @@ istiod:
   # Security settings
   global:
     # CRITICAL: Match ArgoCD namespace (app name = namespace)
-    istioNamespace: istio
+    istioNamespace: istio-system
     
     # Default mTLS mode: STRICT enforces mTLS
     mtls:
