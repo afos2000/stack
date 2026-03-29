@@ -1,0 +1,36 @@
+# Istio Gateway Configuration
+service:
+  type: LoadBalancer
+  selector:
+    app: istio-ingressgateway
+    istio: ingressgateway
+  ports:
+    - name: http2
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 2000m
+    memory: 1Gi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+
+securityContext:
+  fsGroup: 1337
+
+podDisruptionBudget:
+  enabled: false
+
+serviceAccount:
+  create: true
+  name: istio-ingressgateway

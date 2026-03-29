@@ -1,15 +1,9 @@
 apiVersion: v2
-name: istio
+name: istiod
 version: "1"
-description: Helm chart to deploy Istio service mesh
+description: Helm chart to deploy Istio control plane
 dependencies:
-  - name: base
-    version: 1.29.1
-    repository: https://istio-release.storage.googleapis.com/charts
   - name: istiod
-    version: 1.29.1
-    repository: https://istio-release.storage.googleapis.com/charts
-  - name: gateway
     version: 1.29.1
     repository: https://istio-release.storage.googleapis.com/charts
 maintainers:

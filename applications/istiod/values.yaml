@@ -1,0 +1,61 @@
+# Istiod Control Plane Configuration
+istiod:
+  revision: ""
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+  sidecarInjectorWebhook:
+    enableNamespacesByDefault: false
+
+  pilot:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    certProvider: istiod
+    configSource:
+      enabled: false
+    autoscaleEnabled: false
+    autoscaleMin: 1
+    autoscaleMax: 3
+    tracing:
+      enabled: false
+    telemetry:
+      enabled: true
+      v2:
+        enabled: true
+        metadataExchange:
+          wasmEnabled: false
+        prometheus:
+          enabled: false
+
+global:
+  istioNamespace: istio-system
+  mtls:
+    enabled: true
+  outboundTrafficPolicy:
+    mode: ALLOW_ANY
+  securityContext: {}
+  hub: docker.io/istio
+  tag: 1.29.1
+
+meshConfig:
+  accessLogFile: /dev/stdout
+  defaultConfig:
+    proxyMetadata: {}
+    tracing:
+      sampling: 10.0
+  enableAutoMtls: true
+  outboundTrafficPolicy:
+    mode: ALLOW_ANY
+  localityLbSetting:
+    enabled: true

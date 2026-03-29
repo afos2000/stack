@@ -1,0 +1,12 @@
+apiVersion: v2
+name: istio-base
+version: "1"
+description: Helm chart to deploy Istio base CRDs
+dependencies:
+  - name: base
+    version: 1.29.1
+    repository: https://istio-release.storage.googleapis.com/charts
+maintainers:
+  - name: Andres Ortega
+    email: afortegast@gmail.com
+    url: https://www.linkedin.com/in/andres-ortega-97435535/
