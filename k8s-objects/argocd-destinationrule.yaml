@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: argocd-destinationrule
+  namespace: argocd
+spec:
+  host: argocd-server
+  trafficPolicy:
+    tls:
+      mode: DISABLE
+  exportTo:
+    - "*"
