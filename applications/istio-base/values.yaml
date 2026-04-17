@@ -1,7 +1,0 @@
-namespaceOverride: istio-system
-
-# Istio Base Configuration - CRDs only
-base:
-  validationURL: ""
-  enableCRDTemplates: true
-  enableIstioConfigCRDs: true
