@@ -27,6 +27,8 @@ keycloakx:
       memory: 2Gi
 
   extraEnv: |
+    - name: KC_PROXY_HEADERS
+      value: xforwarded
     - name: KC_HOSTNAME_STRICT
       value: "false"
     - name: KC_BOOTSTRAP_ADMIN_USERNAME
