@@ -1,0 +1,18 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: test-hello
+  namespace: external-secrets
+spec:
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: vault-store
+    kind: ClusterSecretStore
+  target:
+    name: test-hello
+    creationPolicy: Owner
+  data:
+    - secretKey: message
+      remoteRef:
+        key: secrets/data/test-hello
+        property: message
