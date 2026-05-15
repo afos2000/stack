@@ -1,6 +1,9 @@
 keycloakx:
   replicas: 1
 
+  args:
+    - start
+
   image:
     registry: quay.io
     repository: keycloak/keycloak
