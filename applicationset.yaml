@@ -22,6 +22,7 @@ spec:
           selfHeal: true
         syncOptions:
         - CreateNamespace=true
+        - ServerSideApply=true
       source:
         repoURL: https://github.com/afos2000/stack.git
         targetRevision: HEAD
