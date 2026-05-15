@@ -1,0 +1,43 @@
+keycloakx:
+  replicas: 1
+
+  image:
+    registry: quay.io
+    repository: keycloak/keycloak
+    tag: 26.5.6
+
+  database:
+    vendor: postgres
+    hostname: keycloak-db-rw.postgres.svc
+    port: 5432
+    database: keycloak
+    username: keycloak
+    existingSecret: keycloak-db-keycloak
+    existingSecretPasswordKey: password
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: 2
+      memory: 2Gi
+
+  extraEnv: |
+    - name: KC_PROXY
+      value: edge
+    - name: KC_HOSTNAME_STRICT
+      value: "false"
+    - name: KC_BOOTSTRAP_ADMIN_USERNAME
+      value: admin
+    - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: keycloak-admin
+          key: password
+
+  service:
+    type: ClusterIP
+
+  ingress:
+    enabled: false

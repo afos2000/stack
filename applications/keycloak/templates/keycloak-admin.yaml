@@ -1,0 +1,23 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: keycloak-admin
+  namespace: keycloak
+spec:
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: vault-store
+    kind: ClusterSecretStore
+  target:
+    name: keycloak-admin
+    creationPolicy: Owner
+    deletionPolicy: Retain
+  data:
+    - secretKey: password
+      remoteRef:
+        conversionStrategy: Default
+        decodingStrategy: None
+        key: secrets/data/keycloak
+        metadataPolicy: None
+        nullBytePolicy: Ignore
+        property: admin-pw
