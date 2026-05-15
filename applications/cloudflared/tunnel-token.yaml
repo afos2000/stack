@@ -1,0 +1,23 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: tunnel-token
+  namespace: cloudflared
+spec:
+  refreshInterval: "1h"
+  secretStoreRef:
+    name: vault-store
+    kind: ClusterSecretStore
+  target:
+    name: tunnel-token
+    creationPolicy: Owner
+    deletionPolicy: Retain
+  data:
+    - secretKey: token
+      remoteRef:
+        conversionStrategy: Default
+        decodingStrategy: None
+        key: secrets/data/cloudflare-tunnel
+        metadataPolicy: None
+        nullBytePolicy: Ignore
+        property: token
