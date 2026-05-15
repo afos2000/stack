@@ -11,8 +11,13 @@ spec:
   target:
     name: test-hello
     creationPolicy: Owner
+    deletionPolicy: Retain
   data:
     - secretKey: message
       remoteRef:
+        conversionStrategy: Default
+        decodingStrategy: None
         key: secrets/data/test-hello
+        metadataPolicy: None
+        nullBytePolicy: Ignore
         property: message
