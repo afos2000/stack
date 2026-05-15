@@ -30,8 +30,18 @@ keycloakx:
       memory: 2Gi
 
   extraEnv: |
+    - name: KC_PROXY_HEADERS
+      value: xforwarded
+    - name: KC_HOSTNAME
+      value: "https://your-keycloak.domain.com"
     - name: KC_HOSTNAME_STRICT
       value: "false"
+    - name: KC_HOSTNAME_BACKCHANNEL_DYNAMIC
+      value: "true"
+    - name: KC_HTTP_ENABLED
+      value: "true"
+    - name: KC_HTTP_PORT
+      value: "8080"
     - name: KC_BOOTSTRAP_ADMIN_USERNAME
       value: admin
     - name: KC_BOOTSTRAP_ADMIN_PASSWORD
