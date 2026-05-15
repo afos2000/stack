@@ -1,10 +1,6 @@
 keycloakx:
   replicas: 1
 
-  proxy:
-    enabled: true
-    mode: xforwarded 
-
   args:
     - start
 
@@ -29,6 +25,9 @@ keycloakx:
     limits:
       cpu: 2
       memory: 2Gi
+
+  http:
+    relativePath: "/"
 
   extraEnv: |
     - name: KC_HOSTNAME
