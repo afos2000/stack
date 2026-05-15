@@ -27,8 +27,8 @@ keycloakx:
       memory: 2Gi
 
   extraEnv: |
-    - name: KC_PROXY
-      value: edge
+    - name: KC_HOSTNAME_URL
+      value: https://keycloak.andreskube.uk
     - name: KC_HOSTNAME_STRICT
       value: "false"
     - name: KC_BOOTSTRAP_ADMIN_USERNAME
