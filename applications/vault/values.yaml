@@ -1,53 +1,54 @@
-global:
-  tlsDisable: true
+vault:
+  global:
+    tlsDisable: true
 
-injector:
-  enabled: false
+  injector:
+    enabled: false
 
-server:
-  image:
-    repository: hashicorp/vault
-    tag: 1.21.2
-    pullPolicy: IfNotPresent
+  server:
+    image:
+      repository: hashicorp/vault
+      tag: 1.21.2
+      pullPolicy: IfNotPresent
 
-  resources:
-    requests:
-      cpu: 250m
-      memory: 256Mi
-    limits:
-      cpu: 500m
-      memory: 512Mi
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
 
-  ha:
-    enabled: true
-    replicas: 1
-    raft:
+    ha:
       enabled: true
-      setNodeId: true
-      config: |
-        ui = true
-        listener "tcp" {
-          tls_disable = 1
-          address = "[::]:8200"
-          cluster_address = "[::]:8201"
-        }
-        storage "raft" {
-          path = "/vault/data"
-        }
-        service_registration "kubernetes" {}
+      replicas: 1
+      raft:
+        enabled: true
+        setNodeId: true
+        config: |
+          ui = true
+          listener "tcp" {
+            tls_disable = 1
+            address = "[::]:8200"
+            cluster_address = "[::]:8201"
+          }
+          storage "raft" {
+            path = "/vault/data"
+          }
+          service_registration "kubernetes" {}
 
-  serviceAccount:
-    create: true
+    serviceAccount:
+      create: true
 
-  dataStorage:
+    dataStorage:
+      enabled: true
+      size: 10Gi
+      storageClass: longhorn
+
+    service:
+      enabled: true
+      type: ClusterIP
+
+  ui:
     enabled: true
-    size: 10Gi
-    storageClass: longhorn
-
-  service:
-    enabled: true
-    type: ClusterIP
-
-ui:
-  enabled: true
-  serviceType: ClusterIP
+    serviceType: ClusterIP
