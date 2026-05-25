@@ -22,7 +22,6 @@ configs:
         - openid
         - profile
         - email
-        - groups
   rbac:
     policy.default: ''
     policy.csv: |
