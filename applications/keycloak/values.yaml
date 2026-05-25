@@ -3,6 +3,7 @@ keycloakx:
 
   args:
     - start
+    - --import-realm
 
   image:
     registry: quay.io
@@ -49,3 +50,12 @@ keycloakx:
 
   ingress:
     enabled: false
+
+  extraVolumes: |
+    - name: realm-import
+      configMap:
+        name: keycloak-realm-argocd
+
+  extraVolumeMounts: |
+    - name: realm-import
+      mountPath: /opt/keycloak/data/import/
