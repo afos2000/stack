@@ -1,9 +1,14 @@
 longhorn:
   defaultSettings:
     defaultDataPath: /var/lib/longhorn
+    taintToleration: node-role.kubernetes.io/control-plane=:NoSchedule
   persistence:
     defaultClass: true
     defaultClassReplicaCount: 2
+  tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
 
 preUpgradeHookJob:
   enabled: false
