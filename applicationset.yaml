@@ -1,0 +1,57 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps-appset
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/afos2000/stack.git
+      revision: HEAD
+      directories:
+      - path: 'applications/*'
+      - path: '!applications/metallb'
+
+  template:
+    metadata:
+      name: '{{path[1]}}'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+      source:
+        repoURL: https://github.com/afos2000/stack.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path[1]}}'
+      ignoreDifferences:
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          jsonPointers:
+            - /webhooks/clientConfig/caBundle
+        - group: admissionregistration.k8s.io
+          kind: MutatingWebhookConfiguration
+          jsonPointers:
+            - /webhooks/clientConfig/caBundle
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: metallb-webhook-configuration
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: istio-validator-istio-system
+        - group: admissionregistration.k8s.io
+          kind: ValidatingWebhookConfiguration
+          name: istiod-default-validator
+        - group: admissionregistration.k8s.io
+          kind: MutatingWebhookConfiguration
+          name: istio-sidecar-injector
+        - group: apiextensions.k8s.io
+          kind: CustomResourceDefinition
+          jsonPointers:
+            - /spec/preserveUnknownFields
