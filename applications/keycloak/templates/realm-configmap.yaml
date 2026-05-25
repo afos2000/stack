@@ -10,6 +10,8 @@ data:
       "realm": "argocd",
       "enabled": true,
       "displayName": "ArgoCD",
+      "registrationAllowed": true,
+      "registrationEmailAsUsername": true,
       "clients": [
         {
           "clientId": "argocd",
