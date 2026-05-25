@@ -6,14 +6,19 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argo-cd
-    targetRevision: 9.5.2
-    helm:
-      parameters:
-        - name: server.service.type
-          value: LoadBalancer
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argo-cd
+      targetRevision: 9.5.2
+      helm:
+        valueFiles:
+          - $values/argocd/values.yaml
+    - repoURL: https://github.com/afos2000/stack.git
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/afos2000/stack.git
+      targetRevision: HEAD
+      path: argocd/manifests
 
   destination:
     server: https://kubernetes.default.svc
