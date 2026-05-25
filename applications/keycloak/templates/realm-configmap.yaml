@@ -23,11 +23,11 @@ data:
           "webOrigins": ["+"],
           "protocolMappers": [
             {
-              "name": "groups",
+              "name": "realm-roles",
               "protocol": "openid-connect",
-              "protocolMapper": "oidc-group-membership-mapper",
+              "protocolMapper": "oidc-usermodel-realm-role-mapper",
               "config": {
-                "full.path": "false",
+                "multivalued": "true",
                 "id.token.claim": "true",
                 "access.token.claim": "true",
                 "claim.name": "groups",
