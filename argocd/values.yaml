@@ -22,26 +22,11 @@ configs:
         - openid
         - profile
         - email
+    ui.bannercontent: |
+      Want access? Open a PR at https://github.com/afos2000/argocd-homelab-access
+    ui.bannerurl: https://github.com/afos2000/argocd-homelab-access
   rbac:
-    policy.default: ''
-    policy.csv: |
-      p, role:argocd-admin, applications, *, */*, allow
-      p, role:argocd-admin, projects, *, *, allow
-      p, role:argocd-admin, clusters, get, *, allow
-      p, role:argocd-admin, repositories, *, *, allow
-      p, role:argocd-admin, logs, get, *, allow
-      p, role:argocd-admin, exec, create, */*, allow
-
-      p, role:argocd-readonly, applications, get, */*, allow
-      p, role:argocd-readonly, applications, list, */*, allow
-      p, role:argocd-readonly, clusters, get, *, allow
-      p, role:argocd-readonly, repositories, get, *, allow
-      p, role:argocd-readonly, logs, get, *, allow
-
-      g, argocd-admin, role:argocd-admin
-      g, argocd-readonly, role:argocd-readonly
-    scopes: "[groups]"
-    policy.matchMode: "glob"
+    create: false
 
 dex:
   enabled: false
