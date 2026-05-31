@@ -15,7 +15,6 @@ cloudflared ───► ClusterIP services
                            
 Internal services (no ingress):
     ├── vault ──► external-secrets ──► all apps
-    ├── docker-registry (pull-through cache for Docker Hub)
     ├── longhorn-system (distributed storage)
     └── metallb (load balancer IP pool)
 ```
@@ -43,8 +42,7 @@ Level 2 (Services)
 Level 3 (Applications)
 ├── keycloak                 ─ SSO/OIDC provider (for ArgoCD)
 ├── argo (workflows)         ─ CI/CD workflow engine
-├── cloudflared              ─ Cloudflare Tunnel (ingress)
-└── docker-registry          ─ Docker Hub pull-through cache
+└── cloudflared              ─ Cloudflare Tunnel (ingress)
 
 Level 4 (User-facing)
 └── argocd (root)            ─ GitOps CD (managed separately)
@@ -92,7 +90,6 @@ No plaintext secrets in git (gitignore blocks `*secret.yaml`).
 | ArgoCD (root) | LoadBalancer | 192.168.0.x (MetalLB) |
 | Keycloak | ClusterIP (via cloudflared) | keycloak.andreskube.uk |
 | Vault | ClusterIP | vault.vault:8200 |
-| Docker registry | ClusterIP | docker-registry.docker-registry.svc:5000 |
 | Longhorn UI | ClusterIP | (port-forward) |
 
 ## Storage
@@ -101,7 +98,6 @@ No plaintext secrets in git (gitignore blocks `*secret.yaml`).
 |-----|------|-------------|---------|
 | vault | 10Gi | longhorn | Raft data |
 | keycloak-db | 10Gi | longhorn | PostgreSQL data |
-| docker-registry | 50Gi | longhorn | Image cache |
 | minio (argo) | (default) | longhorn | Workflow artifacts |
 
 ## Adding a new app
@@ -111,14 +107,6 @@ No plaintext secrets in git (gitignore blocks `*secret.yaml`).
 3. If the app needs credentials, create an ExternalSecret or store in Vault
 4. If the app needs ingress, configure a public hostname in Cloudflare Tunnel dashboard
 5. Commit → ArgoCD picks it up via ApplicationSet
-
-## Docker Hub rate limits
-
-The `docker-registry` app acts as a pull-through cache:
-- Proxies `https://registry-1.docker.io`
-- Stores blobs on Longhorn (50Gi)
-- Authenticated with Vault-stored Docker Hub credentials (5000 pulls/day vs 100 anonymous)
-- Nodes must be configured to use the cache as a mirror (see `applications/docker-registry/CONTAINERD_MIRROR.md`)
 
 ## Next: Backstage
 
