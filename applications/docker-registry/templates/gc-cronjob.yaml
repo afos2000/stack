@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: docker-registry-gc
+  labels:
+    app.kubernetes.io/name: docker-registry
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  schedule: "0 3 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: registry
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+              command:
+                - /bin/registry
+                - garbage-collect
+                - /etc/docker/registry/config.yml
+              volumeMounts:
+                - name: config
+                  mountPath: /etc/docker/registry
+                {{- if .Values.persistence.enabled }}
+                - name: data
+                  mountPath: /var/lib/registry
+                {{- end }}
+          volumes:
+            - name: config
+              configMap:
+                name: docker-registry-config
+            {{- if .Values.persistence.enabled }}
+            - name: data
+              persistentVolumeClaim:
+                claimName: docker-registry-data
+            {{- end }}

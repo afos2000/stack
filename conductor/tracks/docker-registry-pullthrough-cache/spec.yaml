@@ -1,0 +1,33 @@
+---
+title: Deploy Docker Registry as Pull-Through Cache
+status: planned
+created: 2026-05-31
+---
+
+## Objective
+Deploy a local Docker registry that acts as a pull-through/proxy cache for Docker Hub to avoid rate limits and speed up image pulls.
+
+## Requirements
+- Deploy via ArgoCD using the ApplicationSet pattern
+- Proxy remote registry: `https://registry-1.docker.io`
+- Persistent storage (Longhorn-backed PVC) for cached blobs
+- Optional: authenticated proxy with Docker Hub credentials for higher rate limits
+- Optional: configure containerd mirrors on nodes to use the cache automatically
+
+## Constraints
+- Must follow existing repo conventions (Chart.yaml dependency pattern)
+- Ingress via Cloudflare Tunnel (no direct exposure unless needed)
+- Storage should not grow unbounded — implement cleanup/GC policy
+
+## Design Decisions
+| Decision | Choice | Rationale |
+|----------|--------|-----------|
+| Chart | `twuni/docker-registry` | Lightweight, well-maintained, supports proxy config |
+| Storage | Longhorn PVC, 50Gi | Existing Longhorn in cluster; reasonable start size |
+| Service type | ClusterIP | Internal-only; containerd mirrors connect internally |
+| Auth | htpasswd or token-based | If exposed externally; optional initially |
+| containerd config | DaemonSet + node annotation or manual | TBD — may document and handle separately |
+
+## References
+- https://docs.docker.com/registry/recipes/mirror/
+- https://github.com/twuni/docker-registry.helm

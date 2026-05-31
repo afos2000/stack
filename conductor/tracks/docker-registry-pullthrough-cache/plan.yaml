@@ -1,0 +1,54 @@
+---
+title: Deploy Docker Registry as Pull-Through Cache
+status: planned
+steps:
+  - id: 01-chart
+    title: Create Helm chart wrapper
+    description: |
+      Create `applications/docker-registry/` with Chart.yaml referencing
+      `twuni/docker-registry` as dependency, plus values.yaml.
+    status: pending
+
+  - id: 02-config
+    title: Configure registry as pull-through cache
+    description: |
+      Set `config.proxy.remoteurl: https://registry-1.docker.io` in values.yaml.
+      Optionally set `config.proxy.username` / `config.proxy.password` for
+      authenticated pull-through (Docker Hub paid account = 5000 pulls/day).
+    status: pending
+
+  - id: 03-storage
+    title: Configure persistent storage
+    description: |
+      Add Longhorn-backed PVC via values.yaml (`persistence.size: 50Gi`,
+      `persistence.storageClass: longhorn`).
+    status: pending
+
+  - id: 04-gc
+    title: Configure garbage collection
+    description: |
+      Set up registry GC/cleanup to prevent unbounded storage growth.
+      Add a CronJob for periodic `registry garbage-collect` if needed.
+    status: pending
+
+  - id: 05-ingress
+    title: Ingress (optional)
+    description: |
+      If registry needs to be reachable externally (e.g. for dev machines),
+      configure Cloudflare Tunnel or Ingress. Otherwise keep ClusterIP.
+    status: pending
+
+  - id: 06-containerd
+    title: Configure containerd mirrors (node-level)
+    description: |
+      Update `/etc/containerd/config.toml` on each node to add a mirror
+      endpoint pointing to the local registry for `docker.io`.
+      Options: DaemonSet, node config management tool, or documented manual steps.
+    status: pending
+
+  - id: 07-verify
+    title: Verify and test
+    description: |
+      Pull an image from Docker Hub, verify it's cached locally,
+      confirm rate limits are avoided. Test GC.
+    status: pending
