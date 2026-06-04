@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backstage-access
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/afos2000/backstage-homelab-access.git
+    targetRevision: HEAD
+    path: chart
+    helm:
+      valueFiles:
+        - ../users.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backstage
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
