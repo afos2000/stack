@@ -7,11 +7,6 @@ backstage:
     tag: 1.36.1
     pullPolicy: IfNotPresent
 
-  service:
-    type: ClusterIP
-    ports:
-      backend: 7007
-
   appConfig:
     app:
       title: AndresKube Homelab Services
@@ -93,6 +88,11 @@ backstage:
     limits:
       cpu: 1
       memory: 1Gi
+
+service:
+  type: ClusterIP
+  ports:
+    backend: 7007
 
 postgresql:
   enabled: false
