@@ -44,6 +44,11 @@ keycloakx:
         secretKeyRef:
           name: keycloak-admin
           key: password
+    - name: KEYCLOAK_BACKSTAGE_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: keycloak-backstage-client
+          key: client-secret
 
   lifecycleHooks: |
     postStart:
@@ -57,7 +62,9 @@ keycloakx:
               sleep 2
             done
             /opt/keycloak/bin/kcadm.sh update realms/argocd -f /opt/keycloak/data/import/realm-argocd.json 2>/dev/null || true
-            /opt/keycloak/bin/kcadm.sh create realms -f /opt/keycloak/data/import-backstage/realm-backstage.json 2>/dev/null || true
+            /opt/keycloak/bin/kcadm.sh update realms/backstage -f /opt/keycloak/data/import-backstage/realm-backstage.json 2>/dev/null || true
+            CLIENT_UUID=$(/opt/keycloak/bin/kcadm.sh get clients -r backstage --fields id,clientId 2>/dev/null | grep -B1 '"clientId" : "backstage"' | grep '"id"' | sed 's/.*"id" : "\(.*\)",/\1/')
+            /opt/keycloak/bin/kcadm.sh update clients/${CLIENT_UUID} -r backstage -s secret=\"${KEYCLOAK_BACKSTAGE_CLIENT_SECRET}\" 2>/dev/null || true
 
   service:
     type: ClusterIP
