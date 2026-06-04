@@ -36,6 +36,13 @@ backstage:
             clientSecret: ${KEYCLOAK_CLIENT_SECRET}
             callbackUrl: https://platform-apps.andreskube.uk/api/auth/oidc/handler/frame
 
+    techdocs:
+      builder: local
+      generator:
+        runIn: local
+      publisher:
+        type: local
+
     catalog:
       locations: []
       rules:
