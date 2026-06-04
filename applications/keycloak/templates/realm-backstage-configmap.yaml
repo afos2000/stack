@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keycloak-realm-backstage
+  namespace: keycloak
+  labels:
+    app: keycloak
+data:
+  realm-backstage.json: |
+    {
+      "realm": "backstage",
+      "enabled": true,
+      "displayName": "Backstage",
+      "registrationAllowed": false,
+      "clients": [
+        {
+          "clientId": "backstage",
+          "enabled": true,
+          "protocol": "openid-connect",
+          "clientAuthenticatorType": "client-secret",
+          "standardFlowEnabled": true,
+          "redirectUris": [
+            "https://platform-apps.andreskube.uk/api/auth/oidc/handler/frame"
+          ],
+          "webOrigins": ["+"],
+          "protocolMappers": [
+            {
+              "name": "realm-roles",
+              "protocol": "openid-connect",
+              "protocolMapper": "oidc-usermodel-realm-role-mapper",
+              "config": {
+                "multivalued": "true",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "groups",
+                "userinfo.token.claim": "true"
+              }
+            }
+          ]
+        }
+      ],
+      "roles": {
+        "realm": [
+          {
+            "name": "backstage-admin"
+          },
+          {
+            "name": "backstage-user"
+          }
+        ]
+      }
+    }

@@ -55,6 +55,7 @@ keycloakx:
             sleep 15
             /opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user "${KC_BOOTSTRAP_ADMIN_USERNAME}" --password "${KC_BOOTSTRAP_ADMIN_PASSWORD}" 2>/dev/null
             /opt/keycloak/bin/kcadm.sh update realms/argocd -f /opt/keycloak/data/import/realm-argocd.json 2>/dev/null || true
+            /opt/keycloak/bin/kcadm.sh create realms -f /opt/keycloak/data/import-backstage/realm-backstage.json 2>/dev/null || true
 
   service:
     type: ClusterIP
@@ -66,7 +67,12 @@ keycloakx:
     - name: realm-import
       configMap:
         name: keycloak-realm-argocd
+    - name: realm-import-backstage
+      configMap:
+        name: keycloak-realm-backstage
 
   extraVolumeMounts: |
     - name: realm-import
       mountPath: /opt/keycloak/data/import/
+    - name: realm-import-backstage
+      mountPath: /opt/keycloak/data/import-backstage/
