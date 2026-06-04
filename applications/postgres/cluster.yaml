@@ -27,5 +27,6 @@ spec:
     roles:
       - name: backstage
         login: true
+        createdb: true
         passwordSecret:
           name: backstage-db-app
