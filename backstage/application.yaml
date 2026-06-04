@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backstage
+  namespace: argocd
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://backstage.github.io/charts
+      chart: backstage
+      targetRevision: 2.8.1
+      helm:
+        valueFiles:
+          - $values/backstage/values.yaml
+    - repoURL: https://github.com/afos2000/stack.git
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://github.com/afos2000/stack.git
+      targetRevision: HEAD
+      path: backstage/manifests
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: backstage
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

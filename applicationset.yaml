@@ -11,6 +11,7 @@ spec:
       directories:
       - path: 'applications/*'
       - path: '!applications/metallb'
+      - path: '!applications/backstage'
 
   template:
     metadata:
