@@ -52,8 +52,10 @@ keycloakx:
           - /bin/bash
           - -c
           - |
-            sleep 15
-            /opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user "${KC_BOOTSTRAP_ADMIN_USERNAME}" --password "${KC_BOOTSTRAP_ADMIN_PASSWORD}" 2>/dev/null
+            for i in {1..30}; do
+              /opt/keycloak/bin/kcadm.sh config credentials --server http://localhost:8080 --realm master --user "${KC_BOOTSTRAP_ADMIN_USERNAME}" --password "${KC_BOOTSTRAP_ADMIN_PASSWORD}" && break
+              sleep 2
+            done
             /opt/keycloak/bin/kcadm.sh update realms/argocd -f /opt/keycloak/data/import/realm-argocd.json 2>/dev/null || true
             /opt/keycloak/bin/kcadm.sh create realms -f /opt/keycloak/data/import-backstage/realm-backstage.json 2>/dev/null || true
 
