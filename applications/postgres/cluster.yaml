@@ -22,3 +22,10 @@ spec:
     limits:
       cpu: 1
       memory: 1Gi
+
+  managed:
+    roles:
+      - name: backstage
+        login: true
+        passwordSecret:
+          name: backstage-db-app
