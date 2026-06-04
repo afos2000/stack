@@ -4,7 +4,7 @@ backstage:
   image:
     registry: docker.io
     repository: afos2000/backstage
-    tag: "1.51.0-e1676c0-v5"
+    tag: "1.51.0-e1676c0-v6"
     pullPolicy: IfNotPresent
 
   appConfig:
@@ -19,7 +19,7 @@ backstage:
       security:
         headers:
           contentSecurityPolicy:
-            policy: "default-src 'self'; base-uri 'self'; font-src 'self' https: data:; frame-ancestors 'self'; img-src 'self' data:; object-src 'none'; script-src 'self' 'unsafe-eval'; script-src-attr 'none'; style-src 'self' https: 'unsafe-inline'"
+            policy: "default-src 'self'; base-uri 'self'; font-src 'self' https: data:; frame-ancestors 'self'; img-src 'self' data:; object-src 'none'; script-src 'self' 'unsafe-eval'; script-src-attr 'none'; style-src 'self' https: 'unsafe-inline'; upgrade-insecure-requests false"
       database:
         client: pg
         connection:
