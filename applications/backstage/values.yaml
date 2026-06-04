@@ -35,7 +35,7 @@ backstage:
       environment: production
       providers:
         oidc:
-          development:
+          production:
             metadataUrl: http://keycloak.keycloak.svc.cluster.local:8080/realms/backstage/.well-known/openid-configuration
             clientId: backstage
             clientSecret: ${KEYCLOAK_CLIENT_SECRET}
