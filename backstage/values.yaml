@@ -2,9 +2,9 @@ backstage:
   replicas: 1
 
   image:
-    registry: ghcr.io
+    registry: docker.io
     repository: afos2000/backstage
-    tag: "1.36.1-RUN_NUMBER"
+    tag: "1.51.0-e1676c0"
     pullPolicy: IfNotPresent
 
   appConfig:
