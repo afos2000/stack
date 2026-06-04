@@ -1,0 +1,101 @@
+backstage:
+  replicas: 1
+
+  image:
+    registry: ghcr.io
+    repository: backstage/backstage
+    tag: 1.36.1
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    ports:
+      backend: 7007
+
+  appConfig:
+    app:
+      title: AndresKube Homelab Services
+      baseUrl: https://platform-apps.andreskube.uk
+
+    backend:
+      baseUrl: https://platform-apps.andreskube.uk
+      listen:
+        port: 7007
+      database:
+        client: pg
+        connection:
+          host: keycloak-db-rw.postgres.svc
+          port: 5432
+          user: backstage
+          password: ${BACKSTAGE_DB_PASSWORD}
+      cors:
+        origin: https://platform-apps.andreskube.uk
+
+    auth:
+      environment: production
+      providers:
+        oidc:
+          development:
+            metadataUrl: http://keycloak.keycloak.svc.cluster.local:8080/realms/backstage/.well-known/openid-configuration
+            clientId: backstage
+            clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+            callbackUrl: https://platform-apps.andreskube.uk/api/auth/oidc/handler/frame
+
+    catalog:
+      locations: []
+      rules:
+        - allow:
+          - Component
+          - API
+          - Group
+          - User
+          - Resource
+          - System
+          - Location
+          - Template
+
+  extraEnvVars:
+    - name: BACKSTAGE_DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: backstage-db-backstage
+          key: password
+    - name: KEYCLOAK_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: backstage-keycloak-secret
+          key: client-secret
+    - name: BACKEND_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: backstage-auth-secret
+          key: session-secret
+
+  podSecurityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+
+  containerSecurityContext:
+    allowPrivilegeEscalation: false
+    runAsNonRoot: true
+    runAsUser: 1000
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: false
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
+
+postgresql:
+  enabled: false
+
+ingress:
+  enabled: false
