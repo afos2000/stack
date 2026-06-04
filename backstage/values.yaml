@@ -16,6 +16,11 @@ backstage:
       baseUrl: https://platform-apps.andreskube.uk
       listen:
         port: 7007
+      security:
+        headers:
+          contentSecurityPolicy:
+            directives:
+              upgradeInsecureRequests: false
       database:
         client: pg
         connection:
