@@ -22,6 +22,7 @@ backstage:
             directives:
               defaultSrc: ["'self'"]
               scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
+              scriptSrcElem: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
               styleSrc: ["'self'", "'unsafe-inline'", "https:"]
               imgSrc: ["'self'", "data:", "https:"]
               connectSrc: ["'self'", "https:"]
