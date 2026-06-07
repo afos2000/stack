@@ -19,10 +19,11 @@ backstage:
       security:
         headers:
           contentSecurityPolicy:
+            useDefaults: false
             directives:
+              defaultSrc: ["'self'"]
               scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
               scriptSrcElem: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
-              defaultSrc: ["'self'"]
               styleSrc: ["'self'", "https:", "'unsafe-inline'"]
               imgSrc: ["'self'", "data:", "https:"]
               fontSrc: ["'self'", "https:", "data:"]
