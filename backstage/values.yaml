@@ -18,19 +18,8 @@ backstage:
         port: 7007
       security:
         headers:
-          contentSecurityPolicy:
-            directives:
-              defaultSrc: ["'self'"]
-              scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'", "'sha256-Kgkb+QAv5+p+V7Y2v0WR8dublN+kqWu2vZDKSZANol4='", "'sha256-5T6vp5X/j49L4Ma+lKb/Q7tp1x2Qj3zlZb8w0FXgHkQ='"]
-              scriptSrcElem: ["'self'", "'unsafe-eval'", "'unsafe-inline'", "'sha256-Kgkb+QAv5+p+V7Y2v0WR8dublN+kqWu2vZDKSZANol4='", "'sha256-5T6vp5X/j49L4Ma+lKb/Q7tp1x2Qj3zlZb8w0FXgHkQ='"]
-              styleSrc: ["'self'", "'unsafe-inline'", "https:"]
-              imgSrc: ["'self'", "data:", "https:"]
-              connectSrc: ["'self'", "https:"]
-              fontSrc: ["'self'", "https:", "data:"]
-              workerSrc: ["'self'", "blob:"]
-              objectSrc: ["'none'"]
-              frameAncestors: ["'self'"]
-              upgradeInsecureRequests: false
+          contentSecurityPolicy: false
+            
       database:
         client: pg
         connection:
