@@ -16,22 +16,11 @@ backstage:
       baseUrl: https://platform-apps.andreskube.uk
       listen:
         port: 7007
-      security:
-        headers:
-          contentSecurityPolicy:
-            useDefaults: false
-            directives:
-              defaultSrc: ["'self'"]
-              scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
-              scriptSrcElem: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
-              styleSrc: ["'self'", "https:", "'unsafe-inline'"]
-              imgSrc: ["'self'", "data:", "https:"]
-              fontSrc: ["'self'", "https:", "data:"]
-              connectSrc: ["'self'", "https:", "wss:"]
-              workerSrc: ["'self'", "blob:"]
-              objectSrc: ["'none'"]
-              frameAncestors: ["'self'"]
-              upgradeInsecureRequests: false
+      csp:
+        script-src: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
+        script-src-elem: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
+        connect-src: ["'self'", "https:", "wss:"]
+        upgrade-insecure-requests: false
             
       database:
         client: pg
