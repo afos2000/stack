@@ -4,14 +4,32 @@ backstage:
   image:
     registry: docker.io
     repository: afos2000/backstage
-    tag: "1.51.0-f0d8664"
+    tag: "1.51.0-e1676c0-v7"
     pullPolicy: IfNotPresent
 
   appConfig:
     app:
       title: AndresKube Homelab Services
+      baseUrl: https://platform-apps.andreskube.uk
 
     backend:
+      baseUrl: https://platform-apps.andreskube.uk
+      listen:
+        port: 7007
+      security:
+        headers:
+          contentSecurityPolicy:
+            directives:
+              defaultSrc: ["'self'"]
+              scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"]
+              styleSrc: ["'self'", "'unsafe-inline'", "https:"]
+              imgSrc: ["'self'", "data:", "https:"]
+              connectSrc: ["'self'", "https:"]
+              fontSrc: ["'self'", "https:", "data:"]
+              workerSrc: ["'self'", "blob:"]
+              objectSrc: ["'none'"]
+              frameAncestors: ["'self'"]
+              upgradeInsecureRequests: false
       database:
         client: pg
         connection:
@@ -21,6 +39,19 @@ backstage:
           password: ${BACKSTAGE_DB_PASSWORD}
       cors:
         origin: https://platform-apps.andreskube.uk
+
+    auth:
+      environment: production
+      providers:
+        oidc:
+          production:
+            metadataUrl: http://keycloak-keycloakx-http.keycloak.svc.cluster.local:80/realms/backstage/.well-known/openid-configuration
+            clientId: backstage
+            clientSecret: ${KEYCLOAK_CLIENT_SECRET}
+            callbackUrl: https://platform-apps.andreskube.uk/api/auth/oidc/handler/frame
+            signIn:
+              resolvers:
+                - resolver: emailMatchingUserEntityProfileEmail
 
     techdocs:
       builder: local
