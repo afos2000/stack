@@ -4,7 +4,7 @@ backstage:
   image:
     registry: docker.io
     repository: afos2000/backstage
-    tag: "1.51.0-5f33fd2"
+    tag: ".51.0-36c6a6b"
     pullPolicy: IfNotPresent
 
   appConfig:
