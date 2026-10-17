@@ -1,6 +1,6 @@
 # longhorn-system
 
-Deploys **Longhorn 1.10.0** — distributed block storage, the default StorageClass for the cluster.
+Deploys **Longhorn 1.11.0** — distributed block storage, the default StorageClass for the cluster.
 
 ## Dependencies
 None (operates on raw disks attached to nodes).
