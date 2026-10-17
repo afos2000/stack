@@ -13,6 +13,7 @@ configs:
     admin.enabled: true
     timeout.reconciliation: 180s
     url: https://argocd.andreskube.uk
+    server.insecure: "true"
     oidc.config: |
       name: Keycloak
       issuer: https://keycloak.andreskube.uk/realms/argocd
