@@ -1,6 +1,6 @@
 # external-secrets
 
-Deploys **External Secrets Operator 2.4.1** — syncs secrets from Vault into Kubernetes Secrets.
+Deploys **External Secrets Operator 2.5.0** — syncs secrets from Vault into Kubernetes Secrets.
 
 ## Dependencies
 - **vault** — upstream secrets backend (ClusterSecretStore targets `http://vault.vault:8200`)

@@ -8,7 +8,7 @@ keycloakx:
   image:
     registry: quay.io
     repository: keycloak/keycloak
-    tag: 26.5.6
+    tag: 26.6.2
 
   database:
     vendor: postgres

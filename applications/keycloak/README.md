@@ -1,6 +1,6 @@
 # keycloak
 
-Deploys **Keycloak 26.5.6** — SSO/OIDC identity provider, configured to authenticate ArgoCD users.
+Deploys **Keycloak 26.6.2** — SSO/OIDC identity provider, configured to authenticate ArgoCD users.
 
 ## Dependencies
 - **postgres** — external database (`keycloak-db-rw.postgres.svc`)
@@ -9,7 +9,7 @@ Deploys **Keycloak 26.5.6** — SSO/OIDC identity provider, configured to authen
 - **cloudflared** — ingress via `keycloak.andreskube.uk`
 
 ## Key config
-- **Image**: `quay.io/keycloak/keycloak:26.5.6`
+- **Image**: `quay.io/keycloak/keycloak:26.6.2`
 - **Hostname**: `https://keycloak.andreskube.uk`
 - **Args**: `start --import-realm` — imports `realm-argocd.json` on startup
 - **Bootstrap admin**: username `admin`, password from Vault
