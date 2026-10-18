@@ -4,7 +4,7 @@ version: v1
 description: Helm chart to deploy argo workflows
 dependencies:
   - name: argo-workflows
-    version: 0.45.27
+    version: 2.0.13
     repository: https://argoproj.github.io/argo-helm
   - name: postgresql
     version: 18.1.1
