@@ -13,7 +13,6 @@ configs:
     admin.enabled: true
     timeout.reconciliation: 180s
     url: https://argocd.andreskube.uk
-    server.insecure: "true"
     oidc.config: |
       name: Keycloak
       issuer: https://keycloak.andreskube.uk/realms/argocd
@@ -28,6 +27,11 @@ configs:
     ui.bannerurl: https://github.com/afos2000/argocd-homelab-access
   rbac:
     create: false
+  params:
+    # server.insecure=true so ArgoCD trusts the Cloudflare proxy
+    # that terminates TLS and forwards HTTP to the ArgoCD server.
+    # Fixes redirect loop when accessing via Cloudflare Tunnel.
+    server.insecure: "true"
 
 dex:
   enabled: false
